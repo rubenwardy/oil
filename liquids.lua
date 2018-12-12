@@ -1,6 +1,8 @@
 local function register_liquid(name, desc, over1, over2)
 	local texture = name:gsub("%:", "_")
 
+	local water_sounds = default and default.node_sound_water_defaults()
+
 	minetest.register_node(name .. "_source", {
 		description = desc,
 		drawtype = "liquid",
@@ -42,7 +44,7 @@ local function register_liquid(name, desc, over1, over2)
 		liquid_range = 2,
 		post_effect_color = {a = 153, r = 30, g = 30, b = 30},
 		groups = {liquid = 3},
-		sounds = default.node_sound_water_defaults(),
+		sounds = water_sounds,
 	})
 
 	minetest.register_node(name .. "_flowing", {
@@ -88,7 +90,7 @@ local function register_liquid(name, desc, over1, over2)
 		liquid_range = 2,
 		post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 		groups = {liquid = 3, not_in_creative_inventory = 1},
-		sounds = default.node_sound_water_defaults(),
+		sounds = water_sounds,
 	})
 
 	minetest.override_item(name .. "_source",  table.copy(over1))
@@ -115,31 +117,34 @@ register_liquid("oil:naphtha", "Naphtha", {
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 })
 
-
-minetest.register_ore({
-	ore_type        = "blob",
-	ore             = "oil:crude_source",
-	wherein         = {"default:stone"},
-	clust_scarcity  = 64 * 64 * 64,
-	clust_size      = 5,
-	y_max           = -20,
-	y_min           = -31000,
-	noise_threshold = 0.0,
-	noise_params    = {
-		offset  = 0.5,
-		scale   = 0.2,
-		spread  = {x = 5, y = 5, z = 5},
-		seed    = 2316,
-		octaves = 1,
-		persist = 0.0
-	},
-	biomes = {
-		"taiga_ocean",
-		"snowy_grassland_ocean",
-		"grassland_ocean",
-		"coniferous_forest_ocean",
-		"deciduous_forest_ocean",
-		"sandstone_desert_ocean",
-		"cold_desert_ocean",
-	},
-})
+if minetest.get_modpath("default") then
+	minetest.register_ore({
+		ore_type        = "blob",
+		ore             = "oil:crude_source",
+		wherein         = {"default:stone"},
+		clust_scarcity  = 64 * 64 * 64,
+		clust_size      = 5,
+		y_max           = -20,
+		y_min           = -31000,
+		noise_threshold = 0.0,
+		noise_params    = {
+			offset  = 0.5,
+			scale   = 0.2,
+			spread  = {x = 5, y = 5, z = 5},
+			seed    = 2316,
+			octaves = 1,
+			persist = 0.0
+		},
+		biomes = {
+			"taiga_ocean",
+			"snowy_grassland_ocean",
+			"grassland_ocean",
+			"coniferous_forest_ocean",
+			"deciduous_forest_ocean",
+			"sandstone_desert_ocean",
+			"cold_desert_ocean",
+		},
+	})
+else
+	minetest.log("warning", "[ore] Unable to find biomes to spawn ore in!")
+end

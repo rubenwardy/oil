@@ -2,7 +2,7 @@
 
 Adds crude oil, and derived products such as plastic.
 
-Requires Minetest 5.0.0  
+Requires Minetest 5.0.0 and node_io  
 License: MIT
 
 ## Licenses

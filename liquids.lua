@@ -117,6 +117,18 @@ register_liquid("oil:naphtha", "Naphtha", {
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 })
 
+register_liquid("oil:petrol", "Petrol", {
+	liquid_viscosity = 8,
+	liquid_range = 8,
+	post_effect_color = {a = 133, r = 0, g = 0, b = 0},
+})
+
+register_liquid("oil:asphalt", "Asphalt", {
+	liquid_viscosity = 1,
+	liquid_range = 1,
+	post_effect_color = {a = 255, r = 0, g = 0, b = 0},
+})
+
 if minetest.get_modpath("default") then
 	minetest.register_ore({
 		ore_type        = "blob",

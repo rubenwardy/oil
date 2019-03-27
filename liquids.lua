@@ -105,16 +105,20 @@ local function register_liquid(name, desc, over1, over2)
 	end
 end
 
+local oil_sounds = {footstep = {name = "oil_oil_footstep", gain = 0.2}}
+
 register_liquid("oil:crude", "Crude Oil", {
 	liquid_viscosity = 7,
 	liquid_range = 2,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
+	sounds = oil_sounds,
 })
 
 register_liquid("oil:naphtha", "Naphtha", {
 	liquid_viscosity = 7,
 	liquid_range = 2,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
+	sounds = oil_sounds,
 })
 
 register_liquid("oil:petrol", "Petrol", {
@@ -127,6 +131,7 @@ register_liquid("oil:asphalt", "Asphalt", {
 	liquid_viscosity = 1,
 	liquid_range = 1,
 	post_effect_color = {a = 255, r = 0, g = 0, b = 0},
+	sounds = oil_sounds,
 })
 
 if minetest.get_modpath("default") then
